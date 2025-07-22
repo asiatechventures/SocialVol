@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerConnect - Making a Difference Together</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-hands-helping"></i>
+                <span>VolunteerConnect</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#opportunities" class="nav-link">Opportunities</a></li>
+                <li><a href="#organizations" class="nav-link">Organizations</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#" class="nav-link btn-login" onclick="showModal('login-modal')">Login</a></li>
+                <li><a href="#" class="nav-link btn-signup" onclick="showModal('signup-modal')">Sign Up</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Make a Difference in Your Community</h1>
+            <p>Connect with meaningful volunteer opportunities and join a community of changemakers.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="showSection('opportunities')">Find Opportunities</button>
+                <button class="btn btn-secondary" onclick="showSection('organizations')">For Organizations</button>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <h3 id="volunteer-count">15,429</h3>
+                <p>Active Volunteers</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="hours-count">284,391</h3>
+                <p>Hours Volunteered</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="org-count">1,247</h3>
+                <p>Partner Organizations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <h2>Find Your Perfect Volunteer Match</h2>
+            <div class="search-form">
+                <div class="search-input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-keywords" placeholder="Search by keywords, cause, or organization">
+                </div>
+                <div class="filter-group">
+                    <select id="location-filter">
+                        <option value="">Select Location</option>
+                        <option value="local">Local (Within 10 miles)</option>
+                        <option value="regional">Regional (Within 50 miles)</option>
+                        <option value="remote">Remote/Virtual</option>
+                    </select>
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <option value="education">Education</option>
+                        <option value="environment">Environment</option>
+                        <option value="health">Health & Wellness</option>
+                        <option value="community">Community Development</option>
+                        <option value="animals">Animal Welfare</option>
+                        <option value="seniors">Senior Care</option>
+                        <option value="youth">Youth Programs</option>
+                        <option value="food">Food Security</option>
+                    </select>
+                    <select id="time-filter">
+                        <option value="">Any Time Commitment</option>
+                        <option value="oneTime">One-time Events</option>
+                        <option value="weekly">Weekly Commitment</option>
+                        <option value="monthly">Monthly Commitment</option>
+                        <option value="flexible">Flexible Schedule</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary search-btn" onclick="searchOpportunities()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section id="opportunities" class="opportunities-section">
+        <div class="container">
+            <h2>Featured Volunteer Opportunities</h2>
+            <div class="opportunities-grid" id="opportunities-grid">
+                <!-- Sample opportunities will be loaded here -->
+            </div>
+            <div class="load-more">
+                <button class="btn btn-outline" onclick="loadMoreOpportunities()">Load More Opportunities</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizations Section -->
+    <section id="organizations" class="organizations-section">
+        <div class="container">
+            <h2>Partner Organizations</h2>
+            <p>Join forces with established organizations making a real impact</p>
+            <div class="organizations-grid" id="organizations-grid">
+                <!-- Organizations will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community-section">
+        <div class="container">
+            <h2>Volunteer Community</h2>
+            <div class="community-features">
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Connect with Fellow Volunteers</h3>
+                    <p>Join groups, share experiences, and build lasting friendships with like-minded individuals.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Earn Recognition & Rewards</h3>
+                    <p>Track your impact, earn badges, and get recognized for your contributions to the community.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Track Your Impact</h3>
+                    <p>Monitor your volunteer hours, see your growth, and share your achievements with others.</p>
+                </div>
+            </div>
+            <div class="community-feed" id="community-feed">
+                <h3>Recent Community Activity</h3>
+                <!-- Community posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard-section" style="display: none;">
+        <div class="container">
+            <h2>Your Volunteer Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Your Statistics</h3>
+                    <div class="user-stats">
+                        <div class="stat">
+                            <span class="stat-number">42</span>
+                            <span class="stat-label">Hours Volunteered</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Events Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Organizations Helped</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Upcoming Commitments</h3>
+                    <div id="upcoming-commitments">
+                        <!-- Upcoming volunteer commitments -->
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Your Achievements</h3>
+                    <div class="achievements" id="user-achievements">
+                        <!-- Achievement badges -->
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Recommended for You</h3>
+                    <div id="recommendations">
+                        <!-- Personalized recommendations -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals and Footer will be added in next part -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Login to VolunteerConnect</h2>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p class="form-footer">Don't have an account? <a href="#" onclick="switchModal('login-modal', 'signup-modal')">Sign up here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signup-modal')">&times;</span>
+            <h2>Join VolunteerConnect</h2>
+            <form id="signup-form" onsubmit="handleSignup(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="interests">Interests (select all that apply):</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" value="education"> Education</label>
+                        <label><input type="checkbox" value="environment"> Environment</label>
+                        <label><input type="checkbox" value="health"> Health & Wellness</label>
+                        <label><input type="checkbox" value="community"> Community Development</label>
+                        <label><input type="checkbox" value="animals"> Animal Welfare</label>
+                        <label><input type="checkbox" value="seniors"> Senior Care</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                <p class="form-footer">Already have an account? <a href="#" onclick="switchModal('signup-modal', 'login-modal')">Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VolunteerConnect</h3>
+                    <p>Connecting volunteers with meaningful opportunities to make a difference in their communities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>For Volunteers</h4>
+                    <ul>
+                        <li><a href="#">Find Opportunities</a></li>
+                        <li><a href="#">Track Hours</a></li>
+                        <li><a href="#">Join Groups</a></li>
+                        <li><a href="#">Get Recognition</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>For Organizations</h4>
+                    <ul>
+                        <li><a href="#">Post Opportunities</a></li>
+                        <li><a href="#">Manage Volunteers</a></li>
+                        <li><a href="#">Track Impact</a></li>
+                        <li><a href="#">Generate Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VolunteerConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
